@@ -6,7 +6,8 @@ class User:
     def __init__(self, userInputValidator):
         self.userInputValidator = userInputValidator
         self.__firstName = None
-        self.__LastName = None
+        self.__lastName = None
+        self.__email = None
 
     def setFirstName(self):
         self.__firstName = self.userInputValidator.inputValidator("First Name")
@@ -15,15 +16,22 @@ class User:
         return self.__firstName
 
     def setLastName(self):
-        self.__LastName = self.userInputValidator.inputValidator("Last Name")
+        self.__lastName = self.userInputValidator.inputValidator("Last Name")
 
     def getLastName(self):
-        return self.__LastName
+        return self.__lastName
+
+    def setEmail(self):
+        self.__email = self.userInputValidator.inputValidator("Email")
+
+    def getEmail(self):
+        return self.__email
 
 
 class UserInputValidation:
 
     __NAME_PATTERN = "^[A-Z][a-zA-Z]{2,}"
+    __EMAIL_PATTERN = "^[a-zA-Z]{1}[a-zA-Z0-9]+([-\\.\\_\\+]?[0-9a-zA-Z]+)*\\@[a-zA-Z]+([\\.][a-z]{2,4})?([\\.][a-z]{2,4})$"
 
     def getPattern(self, inputTitle):
         """This function returns Pattern based on the inputTitle
@@ -31,6 +39,8 @@ class UserInputValidation:
         :return: Patern"""
         if inputTitle == "First Name" or inputTitle == "Last Name":
             return self.__NAME_PATTERN
+        elif inputTitle == "Email":
+            return self.__EMAIL_PATTERN
         return None
 
     def inputValidator(self, inputTitle):
@@ -42,7 +52,10 @@ class UserInputValidation:
             userInput = input("Please Enter " + inputTitle + ": ")
             if re.fullmatch(pattern, userInput):
                 return userInput
-            print("Opps! " + inputTitle + " must start with capital letter and contains min 3 chars and no space")
+            elif inputTitle == "Email":
+                print(f"Opps! Invalid {inputTitle}! Please try with different One")
+            else:
+                print(f"Opps! {inputTitle} must start with capital letter and contains min 3 chars and no space")
 
 
 if __name__ == "__main__":
@@ -54,3 +67,6 @@ if __name__ == "__main__":
     print("First Name: " + user.getFirstName())
     user.setLastName()
     print("Last Name: " + user.getLastName())
+    user.setEmail()
+    print("Email: " + user.getEmail())
+
