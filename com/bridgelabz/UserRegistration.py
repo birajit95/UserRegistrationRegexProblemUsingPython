@@ -80,6 +80,27 @@ class UserInputValidation:
             else:
                 print(f"Opps! {inputTitle} must start with capital letter and contains min 3 chars and no space")
 
+    def validateEmail(self, emailList):
+        for email in emailList:
+            if re.fullmatch(self.__EMAIL_PATTERN, email):
+                print(f"{email} is passed")
+            else:
+                print(f"{email} is failed")
+
+    def validateAllEmails(self):
+        invalidEmailList = ["abc", "abc@.com.my", "abc123@gmail.a", "abc123@.com",
+                            "abc123@.com.com", ".abc@abc.com", "abc()*@gmail.com",
+                            "abc@%*.com", "abc..2002@gmail.com", "abc@1.com", "abc.@gmail.com",
+                            "abc@abc@gmail.com", "abc@gmail.com.1a", "abc@gmail.com.aa.au"]
+        validEmailList = ["abc@yahoo.com", "abc-100@yahoo.com",
+                          "abc.100@yahoo.com", "abc111@abc.com",
+                          "abc-100@abc.net", "abc.100@abc.com.au",
+                          "abc@gmail.com.com", "abc+100@gmail.com"]
+        print("All invalid emails:-")
+        self.validateEmail(invalidEmailList)
+        print("All valid emails:-")
+        self.validateEmail(validEmailList)
+
 
 if __name__ == "__main__":
     print("Welcome to User Registration Problem")
@@ -96,3 +117,4 @@ if __name__ == "__main__":
     print("Mobile: " + str(user.getMobileNumber()))
     user.setPassword()
     print("Password: " + user.getPassword())
+    userInputValidate.validateAllEmails()
