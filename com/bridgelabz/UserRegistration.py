@@ -46,7 +46,7 @@ class UserInputValidation:
     __NAME_PATTERN = "^[A-Z][a-zA-Z]{2,}"
     __EMAIL_PATTERN = "^[a-zA-Z]{1}[a-zA-Z0-9]+([-\\.\\_\\+]?[0-9a-zA-Z]+)*\\@[a-zA-Z]+([\\.][a-z]{2,4})?([\\.][a-z]{2,4})$"
     __MOBILE_NUMBER_PATTERN = "^(\\+91|91)[ ]{1}[6-9]{1}[0-9]{9}$"
-    __PASSWORD_PATTERN = "(?=.*[A-Z])([a-zA-Z0-9]|[^a-zA-Z0-9]){8,}"
+    __PASSWORD_PATTERN = "(?=.*[A-Z])(?=.*[0-9])([a-zA-Z0-9]|[^a-zA-Z0-9]){8,}"
 
     def getPattern(self, inputTitle):
         """This function returns Pattern based on the inputTitle
@@ -86,13 +86,13 @@ if __name__ == "__main__":
 
     userInputValidate = UserInputValidation()
     user = User(userInputValidate)
-    user.setFirstName()
-    print("First Name: " + user.getFirstName())
-    user.setLastName()
-    print("Last Name: " + user.getLastName())
-    user.setEmail()
-    print("Email: " + user.getEmail())
-    user.setMobileNumber()
-    print("Mobile: " + str(user.getMobileNumber()))
+        user.setFirstName()
+        print("First Name: " + user.getFirstName())
+        user.setLastName()
+        print("Last Name: " + user.getLastName())
+        user.setEmail()
+        print("Email: " + user.getEmail())
+        user.setMobileNumber()
+        print("Mobile: " + str(user.getMobileNumber()))
     user.setPassword()
     print("Password: " + user.getPassword())
